@@ -74,11 +74,16 @@ WSGI_APPLICATION = "HairMetalClub.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hairmetalclub',
+        'USER': 'hairmetalclub',
+        'PASSWORD': 'Enerhaugen666',
+        'HOST': 'localhost',   # Typically 'localhost' if MySQL is running locally
+        'PORT': '3306',   # Typically '3306'
     }
 }
+
 
 
 # Password validation
