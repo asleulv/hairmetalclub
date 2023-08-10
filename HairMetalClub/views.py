@@ -39,11 +39,12 @@ def album_review(request, artist_slug, title_slug):
 
 def reviews_by_tag(request, tag_name):
     api_url = request.build_absolute_uri(reverse('album-list'))
-    print(api_url)
-    print("API URL:", api_url)
-    print(tag_name)
+
 
     response = requests.get(api_url)
+    print("Response Status Code:", response.status_code)
+    print("Response Content:", response.content)
+
     filtered_albums = response.json()
 
     return render(request, 'reviews_by_tag.html', {'filtered_albums': filtered_albums})
