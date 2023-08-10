@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/albums/', views.AlbumListAPIView.as_view(), name='album-list'),
     path('reviews/', views.reviews, name='reviews'),
     path('reviews/<slug:artist_slug>/<slug:title_slug>/', views.album_review, name='album-review'),
+    path('reviews/tag/<str:tag_name>/', views.reviews_by_tag, name='reviews-by-tag'),
 ]
 
 if settings.DEBUG:
