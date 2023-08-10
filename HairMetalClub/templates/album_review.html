@@ -2,46 +2,56 @@
 {% load static %}
 
 {% block content %}
-  <div class="review-header">
-    <h1 class="artist-name">{{ album.artist }}</h1>
-    <h2 class="album-title">{{ album.title }}</h2>
-    <div class="release-date">Released {{ album.release_date }}</div>
-    <div class="album-container">
-      <img src="{{ album.image }}" alt="Album Cover" class="album-image" />
+  <div class="album_review-review-header">
+    <h1 class="album_review-artist-name">{{ album.artist }}</h1>
+    <h2 class="album_review-album-title">{{ album.title }}</h2>
+    <div class="album_review-release-date">Released {{ album.release_date }}</div>
+    <div class="album_review-album-container">
+      <img src="{{ album.image }}" alt="Album Cover" class="album_review-album-image" />
 
       <!-- Tracklist -->
-      <div class="tracklist">
+      <div class="album_review-tracklist">
         <h3>Tracklist</h3>
-        <div>{{ album.tracklist|safe|linebreaksbr }}</div>
+        <div>{{ album.tracklist|safe }}</div>
       </div>
     </div>
   </div>
-  <div class="button-container">
+  <div class="album_review-button-container">
     <!-- Your button links here -->
   </div>
-  <div class="review-text">
-    {{ album.review|safe|linebreaksbr }}
+  <div class="album_review-review-text">
+    {{ album.review|safe }}
   </div>
-  <div class="songs-container">
-    <div class="best-songs">
+  <div class="album_review-songs-container">
+    <div class="album_review-best-songs">
       <h3>
-        <img src="{% static 'images/happy_mask.png' %}" alt="Sad Mask" class="icon" />
+        <img src="{% static 'images/happy_mask.png' %}" alt="Sad Mask" class="album_review-icon" />
         Highlights
       </h3>
-      <div>{{ album.highlights|safe|linebreaksbr }}</div>
+      <div>{{ album.highlights|safe }}</div>
     </div>
-    <div class="worst-songs">
+    <div class="album_review-worst-songs">
       <h3>
-        <img src="{% static 'images/sad_mask.png' %}" alt="Sad Mask" class="icon" />
+        <img src="{% static 'images/sad_mask.png' %}" alt="Sad Mask" class="album_review-icon" />
         Lowlights
       </h3>
-      <div>{{ album.lowlights|safe|linebreaksbr }}</div>
+      <div>{{ album.lowlights|safe }}</div>
     </div>
   </div>
-  <div class="rating-info">
-    <p class="rating-label">Rating:</p>
-    <h2 class="rating">
-      <span class="rating-stars">{{ album.rating }}</span>
+  <div class="album_review-tags-container">
+    {% for tag in album.tags %}
+    {% if tag.name %}
+        <a href="{% url 'reviews-by-tag' tag_name=tag.name %}">
+            {{ tag.name }}
+        </a>
+    {% endif %}
+{% endfor %}
+
+  </div>
+  <div class="album_review-rating-info">
+    <p class="album_review-rating-label">Rating:</p>
+    <h2 class="album_review-rating">
+      <span class="album_review-rating-stars">{{ album.rating }}</span>
     </h2>
   </div>
 {% endblock %}

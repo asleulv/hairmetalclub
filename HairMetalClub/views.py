@@ -4,6 +4,7 @@ from .models import Album
 from .serializers import AlbumSerializer
 import requests
 from django.shortcuts import render
+from django.urls import reverse
 
 class AlbumListAPIView(APIView):
     def get(self, request, format=None):
@@ -12,13 +13,13 @@ class AlbumListAPIView(APIView):
         return Response(serializer.data)
     
 def reviews(request):
-    api_url = 'http://127.0.0.1:8000/api/albums/' 
+    api_url = request.build_absolute_uri(reverse('album-list'))
     response = requests.get(api_url)
     albums = response.json()
     return render(request, 'reviews.html', {'albums': albums})
 
 def album_review(request, artist_slug, title_slug):
-    api_url = f'http://127.0.0.1:8000/api/albums/'
+    api_url = request.build_absolute_uri(reverse('album-list'))
     
     try:
         response = requests.get(api_url)
@@ -35,5 +36,17 @@ def album_review(request, artist_slug, title_slug):
         album = None
 
     return render(request, 'album_review.html', {'album': album})
+
+def reviews_by_tag(request, tag_name):
+    api_url = request.build_absolute_uri(reverse('album-list'))
+    print(api_url)
+    print("API URL:", api_url)
+    print(tag_name)
+
+    response = requests.get(api_url)
+    filtered_albums = response.json()
+
+    return render(request, 'reviews_by_tag.html', {'filtered_albums': filtered_albums})
+
 
 

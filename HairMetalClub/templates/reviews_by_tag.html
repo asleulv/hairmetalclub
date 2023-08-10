@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+
 <div class="album-grid">
-    {% for album in albums %}
+    {% for album in filtered_albums %}
         <div class="album-card">
             <div class="album-image">
                 <a href="{% url 'album-review' artist_slug=album.artist_slug title_slug=album.title_slug %}">
@@ -16,4 +18,5 @@
         </div>
     {% endfor %}
 </div>
+
 {% endblock %}
