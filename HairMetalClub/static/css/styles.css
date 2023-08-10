@@ -1,0 +1,117 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+.header {
+    background-color: #000000; /* Set the background color of the header */
+    padding: 10px; /* Add some padding to the header */
+    text-align: center; /* Center-align the content within the header */
+    color: rgb(235, 40, 112);
+}
+
+.header img {
+    max-width: 300px; /* Adjust the logo's max width as needed */
+    height: auto; /* Maintain the aspect ratio of the logo */
+    margin-top: 15px;
+}
+
+.header nav {
+    margin-top: 15px;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px; /* Adjust spacing between menu items */
+    background-color: rgb(0, 0, 0);
+    padding: 5px;
+}
+
+/* Remove default list styles */
+.header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+}
+
+.album-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust spacing between album cards */
+    justify-content: center; /* Center items horizontally */
+}
+
+.album-card {
+    flex: 1 1 calc(25% - 20px); /* Each card takes maximum 25% of the container width with spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    position: relative;
+    overflow: hidden; /* Ensure overlay doesn't overflow */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.album-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 100%; /* Maintain image aspect ratio */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.album-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.artist-name {
+    background-color: #c70a71;
+    padding: 2px 10px;
+    display: inline-block;
+    transform: rotate(-2deg); /* Add skew transform */
+    margin: 0; /* Remove default margins */
+    color: white;
+    text-transform: none;
+    margin-bottom: 5px; /* Adjust the margin to overlap with the album title background */
+}
+
+.album-title {
+    background-color: black;
+    padding: 2px 10px;
+    display: inline-block;
+    transform: rotate(-2deg); /* Add skew transform */
+    margin: 0; /* Remove default margins */
+    color: white;
+    text-transform: none;
+    margin-top: 0rem; /* Adjust the margin to overlap with the artist name background */
+}
+
+/* Media query for smaller screen widths */
+@media (max-width: 768px) {
+    .album-card {
+        flex: 1 1 calc(50% - 20px); /* Each card takes full width of the container with spacing */
+    }
+}

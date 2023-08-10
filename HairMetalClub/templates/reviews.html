@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Album Reviews</h1>
+<div class="album-grid">
+    {% for album in albums %}
+        <div class="album-card">
+            <!-- Debug: Image URL - {{ album.image.url }} -->
+            <div class="album-image">
+                <a href="{% url 'album-review' artist_slug=album.artist_slug title_slug=album.title_slug %}">
+                    <img src="{{ album.image }}" alt="{{ album.title }}">
+                </a>
+                
+                
+            </div>
+                <div class="album-info">
+                    <p class="artist-name">{{ album.artist }}</p>
+                    <p class="album-title">{{ album.title }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

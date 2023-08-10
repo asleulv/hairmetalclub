@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="review-header">
+    <h1 class="artist-name">{{ album.artist }}</h1>
+    <h2 class="album-title">{{ album.title }}</h2>
+    <div class="release-date">Released {{ album.release_date }}</div>
+    <div class="album-container">
+      <img src="{{ album.image }}" alt="Album Cover" class="album-image" />
+
+      <!-- Tracklist -->
+      <div class="tracklist">
+        <h3>Tracklist</h3>
+        <div>{{ album.tracklist|safe|linebreaksbr }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container">
+    <!-- Your button links here -->
+  </div>
+  <div class="review-text">
+    {{ album.review|safe|linebreaksbr }}
+  </div>
+  <div class="songs-container">
+    <div class="best-songs">
+      <h3>
+        <img src="{% static 'images/happy_mask.png' %}" alt="Sad Mask" class="icon" />
+        Highlights
+      </h3>
+      <div>{{ album.highlights|safe|linebreaksbr }}</div>
+    </div>
+    <div class="worst-songs">
+      <h3>
+        <img src="{% static 'images/sad_mask.png' %}" alt="Sad Mask" class="icon" />
+        Lowlights
+      </h3>
+      <div>{{ album.lowlights|safe|linebreaksbr }}</div>
+    </div>
+  </div>
+  <div class="rating-info">
+    <p class="rating-label">Rating:</p>
+    <h2 class="rating">
+      <span class="rating-stars">{{ album.rating }}</span>
+    </h2>
+  </div>
+{% endblock %}
