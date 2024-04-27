@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="tags-tag-groups">
+    {% for tag_group in tag_groups %}
+        <div class="tags-tag-group">
+            <h2 class="tags-group-title">the {{ tag_group.name }}s</h2>
+            <ul class="tags-tag-list">
+                {% for tag in tag_data|dictsort:"name" %}
+                    {% if tag.tag_group.name == tag_group.name %}
+                        <li>
+                            <a class="album_review-tag-button tags-tag-button" href="{% url 'reviews-by-tag' tag_name=tag.name %}" style="background-color: {{ tag.tag_group.color }}; border: 1px solid {{ tag.tag_group.color }};">
+                                {{ tag.name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

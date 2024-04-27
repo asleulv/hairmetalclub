@@ -18,15 +18,22 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
 from . import views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/albums/', views.AlbumListAPIView.as_view(), name='album-list'),
+    path('api/tags', views.TagDataAPIView.as_view(), name='tag-data'),
     path('reviews/', views.reviews, name='reviews'),
+    path('', RedirectView.as_view(url='reviews/', permanent=False), name='root'),
     path('reviews/<slug:artist_slug>/<slug:title_slug>/', views.album_review, name='album-review'),
     path('tag/<str:tag_name>/', views.reviews_by_tag, name='reviews-by-tag'),
+    path('highlights/', views.highlights_list, name='highlights-list'),
+    path('tags/', views.tag_list, name='tag-list'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]
 
 if settings.DEBUG:

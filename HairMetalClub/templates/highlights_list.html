@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="essential-list">
+
+    <div class="textblock-title">
+    <h2>{{ textblock.playlist_title }}</h2>
+    <div class="textblock-content">
+        {{ textblock.playlist_content | safe }}
+    </div>
+</div>
+
+
+    <table class="essential-table">
+        <thead>
+            <tr>
+                <th>Artist</th>
+                <th>Song</th>
+                <th class="hide-on-mobile">Album</th>
+                <th class="hide-on-mobile">Year</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for data in highlights_data %}
+                <tr>
+                    <td><b>{{ data.artist }}</b></td>
+                    <td><b>{{ data.song_title }}</b></td>
+                    <td class="hide-on-mobile">{{ data.title }}</td>
+                    <td class="hide-on-mobile">{{ data.release_date|slice:":4" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

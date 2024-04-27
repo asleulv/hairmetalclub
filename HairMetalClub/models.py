@@ -3,6 +3,8 @@ from ckeditor.fields import RichTextField
 from colorfield.fields import ColorField
 from django.utils.text import slugify
 
+# MOD
+
 class TextBlock(models.Model):
     about_title = models.CharField(max_length=200)
     about_content = RichTextField()
@@ -31,16 +33,16 @@ class Tag(models.Model):
 class Album(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     artist = models.CharField(max_length=200)
-    artist_slug = models.SlugField(unique=True)
+    artist_slug = models.SlugField(unique=False)
     title = models.CharField(max_length=200)
     title_slug = models.SlugField(unique=True)
     release_date = models.DateField()
-    tracklist = RichTextField()
+    tracklist = models.TextField()
     image = models.ImageField(upload_to='uploads/album_covers/')
     review = RichTextField()
-    highlights = RichTextField(null=True, blank=True)
-    lowlights = RichTextField(null=True, blank=True)
-    rating = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 7)])
+    highlights = models.TextField(null=True, blank=True)
+    lowlights = models.TextField(null=True, blank=True)
+    rating = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 7)], default=1)
     spotify_url = models.URLField(null=True, blank=True)
     website_url = models.URLField(null=True, blank=True)
     buy_url = models.URLField(null=True, blank=True)
@@ -70,5 +72,3 @@ class UserScore(models.Model):
     def __str__(self):
         return f"{self.album.title} - Score: {self.score}"
 
-    def __str__(self):
-        return self.title

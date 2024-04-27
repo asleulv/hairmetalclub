@@ -12,7 +12,7 @@
       <!-- Tracklist -->
       <div class="album_review-tracklist">
         <h3>Tracklist</h3>
-        <div>{{ album.tracklist|safe }}</div>
+        <div>{{ album.tracklist|linebreaks }}</div>
       </div>
     </div>
   </div>
@@ -22,36 +22,55 @@
   <div class="album_review-review-text">
     {{ album.review|safe }}
   </div>
+
   <div class="album_review-songs-container">
     <div class="album_review-best-songs">
       <h3>
         <img src="{% static 'images/happy_mask.png' %}" alt="Sad Mask" class="album_review-icon" />
-        Highlights
+        Classics
       </h3>
-      <div>{{ album.highlights|safe }}</div>
+      <div>{{ album.highlights|linebreaks }}</div>
     </div>
     <div class="album_review-worst-songs">
       <h3>
         <img src="{% static 'images/sad_mask.png' %}" alt="Sad Mask" class="album_review-icon" />
-        Lowlights
+        Duds
       </h3>
-      <div>{{ album.lowlights|safe }}</div>
+      <div>{{ album.lowlights|linebreaks }}</div>
     </div>
-  </div>
-  <div class="album_review-tags-container">
-    {% for tag in album.tags %}
-    {% if tag.name %}
-        <a href="{% url 'reviews-by-tag' tag_name=tag.name %}">
-            {{ tag.name }}
-        </a>
-    {% endif %}
-{% endfor %}
-
   </div>
   <div class="album_review-rating-info">
     <p class="album_review-rating-label">Rating:</p>
     <h2 class="album_review-rating">
-      <span class="album_review-rating-stars">{{ album.rating }}</span>
+        <span class="album_review-rating-stars">
+            <p>{{ album.star_rating }}</p>
+        </span>
     </h2>
-  </div>
+</div>
+
+<div class="album_review-tags-container">
+    {% for tag in album.tags %}
+        {% if tag.name %}
+            <a class="album_review-tag-button" href="{% url 'reviews-by-tag' tag_name=tag.name %}" style="background-color: {{ tag.tag_group.color }}; border: 1px solid {{ tag.tag_group.color }};">
+                {{ tag.name }}
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

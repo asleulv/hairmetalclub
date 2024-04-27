@@ -1,6 +1,18 @@
 {% load static %}
-<img src="{% static 'images/hmc_logo.png' %}" alt="Hair Metal Club Logo">
-<nav>
-    <a href="{% url 'reviews' %}">Album Reviews</a>
-    <!-- Other menu items -->
-</nav>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="menu-toggle">
+    <label for="menu-toggle-checkbox" class="menu-icon" id="menu-icon">&#9776;</label>
+    <div class="logo-container">
+        <img src="{% static 'images/hmc_logo.png' %}" alt="Hair Metal Club Logo" class="logo">
+    </div>
+    <nav class="menu">
+        <a href="{% url 'reviews' %}">Albums</a>
+        <a href="{% url 'highlights-list' %}">Essential Playlist</a>
+        <a href="{% url 'tag-list' %}">Tags</a>
+        <a href="{% url 'about' %}">About HMC</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+    <span class="close-menu" style="display: none;">X</span> <!-- Add the close button -->
+</div>
+

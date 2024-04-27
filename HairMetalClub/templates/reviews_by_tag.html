@@ -2,11 +2,19 @@
 {% load static %}
 
 {% block content %}
-
 <div class="album-grid">
     {% for album in filtered_albums %}
-        {{ album }}
+        <div class="album-card">
+            <div class="album-image">
+                <a href="{% url 'album-review' artist_slug=album.artist_slug title_slug=album.title_slug %}">
+                    <img src="{{ album.image }}" alt="{{ album.title }}">
+                </a>
+            </div>
+            <div class="album-info">
+                <p class="artist-name">{{ album.artist }}</p>
+                <p class="album-title">{{ album.title }}</p>
+            </div>
+        </div>
     {% endfor %}
 </div>
-
 {% endblock %}

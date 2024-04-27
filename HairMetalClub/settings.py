@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = "django-insecure-r))50d-g4^f(41a@nd1icyf*o2le5s(bb&jec(4(c8rn)32%t5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hairmetal.club', '*.hairmetal.club']
 
 
 # Application definition
@@ -86,6 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "HairMetalClub.wsgi.application"
 
+WEB3FORMS_API_KEY = '65dd1157-c2bc-4848-aa66-80b0eec24f9e'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -93,11 +95,11 @@ WSGI_APPLICATION = "HairMetalClub.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hairmetalclub',
-        'USER': 'hairmetalclub',
-        'PASSWORD': 'Enerhaugen666',
-        'HOST': 'localhost',   # Typically 'localhost' if MySQL is running locally
-        'PORT': '3306',   # Typically '3306'
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -141,7 +143,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "HairMetalClub/static/"
+# settings.py
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/hitquiz/hairmetalclub/hairmetalclub/static'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

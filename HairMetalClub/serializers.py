@@ -15,6 +15,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class AlbumSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)  # Serialize the related tags
+    star_rating = serializers.CharField(read_only=True)
 
     class Meta:
         model = Album

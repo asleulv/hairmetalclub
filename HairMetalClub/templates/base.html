@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Site Title</title>
+    <title>HairMetal.club</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -16,5 +16,37 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <!-- Include your JavaScript code here -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function openMenu() {
+                $(".menu").addClass("active");
+                $(".close-menu").show();
+            }
+
+            function closeMenu() {
+                $(".menu").removeClass("active");
+                $(".close-menu").hide();
+            }
+
+            $(".menu-icon").click(function() {
+                if ($(".menu").hasClass("active")) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            $(".menu a").click(function() {
+                closeMenu();
+            });
+
+            $(".close-menu").click(function() {
+                closeMenu();
+            });
+        });
+    </script>
 </body>
 </html>
