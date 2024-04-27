@@ -87,7 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "HairMetalClub.wsgi.application"
 
-WEB3FORMS_API_KEY = '65dd1157-c2bc-4848-aa66-80b0eec24f9e'
+WEB3FORMS_API_KEY = config('WEB3FORMS_API_KEY')
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
